@@ -72,17 +72,18 @@
       };
 
       window = {
+        dimensions = { lines = 31; columns = 81; };
         opacity = 1.0;
-        padding.x = 1;
-	      padding.y = 1;
-	      decorations = "full";
-	      resize_increments = true;
+        padding.x = 0;
+        padding.y = 0;
+        decorations = "full";
+        resize_increments = true;
       };
 
       font = {
-        size = 9.0;
-	      anormal.family = "monospace";
-	      bold = { family = "monospace"; style = "Regular"; };
+        size = 8.0;
+        normal.family = "monospace";
+        bold = { family = "monospace"; style = "Regular"; };
         italic = { family = "monospace"; style = "Regular"; };
       };
 
@@ -97,7 +98,7 @@
         # Default colors
         primary = {
           background = "0x000000";
-          foreground = "0xcbe3e7";
+          foreground = "0xd2b48c";
         };
     	# Normal colors
 	      normal = {
@@ -144,18 +145,30 @@
         fi
         builtin cd $PROJECT
       }
+      cds() {
+        if [ -z "$1" -a -z "$SOURCE" ]; then
+           export SOURCE=~/s
+        elif [ -z "$1" -a -n "$SOURCE" ]; then
+           export SOURCE=$SOURCE
+        else
+           export SOURCE=~/s/$1
+        fi
+        builtin cd $SOURCE
+      }
     '';
     # sessionVariables = {};
     shellAliases = {
+      ".." = "cd ..";
+      e = "emacs";
       gits = "git status";
-      ".." = "cd ..";      
+      m = "make";
     };
   };
 
   programs.emacs = {
     enable = true;
     extraConfig = ''
-      (if window-system (set-face-attribute 'default nil :font "monospace-9"))
+      (if window-system (set-face-attribute 'default nil :family "Monospace" :height 140))
       (load-theme 'zenburn t)
       (set-background-color "black")
       (set-cursor-color "#ff4520")
