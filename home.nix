@@ -135,11 +135,9 @@
       TITLE="\[\033]0;\w\007\]"  
       PS1="$TITLE$GREEN\u@\h$NONE:$BLUE\W$NONE\\$ "
       cdp() {
-        if [ -z "$PROJECT" -a -z "$1" ]; then
+        if [ -z "$1" -a -z "$PROJECT" ]; then
            export PROJECT=~/p
-        elif [ -z "$PROJECT" -a -n "$1" ]; then
-           export PROJECT=~/p/$1
-        elif [ -n "$PROJECT" -a -z "$1" ]; then
+        elif [ -z "$1" -a -n "$PROJECT" ]; then
            export PROJECT=$PROJECT
         else
            export PROJECT=~/p/$1
@@ -148,7 +146,10 @@
       }
     '';
     # sessionVariables = {};
-    # shellAliases = {};
+    shellAliases = {
+      gits = "git status";
+      ".." = "cd ..";      
+    };
   };
 
   programs.emacs = {
