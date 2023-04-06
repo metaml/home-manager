@@ -159,7 +159,7 @@
     # sessionVariables = {};
     shellAliases = {
       ".." = "cd ..";
-      e = "emacs";
+      e = "emacs --no-splash";
       gits = "git status";
       m = "make";
     };
@@ -168,6 +168,7 @@
   programs.emacs = {
     enable = true;
     extraConfig = ''
+      (setq initial-scratch-message nil)
       (if window-system (set-face-attribute 'default nil :family "Monospace" :height 140))
       (load-theme 'zenburn t)
       (set-background-color "black")
@@ -180,6 +181,8 @@
       (global-hl-line-mode 1)
       (set-face-background 'hl-line "#050555")
       (setq standard-indent 2)
+      (setq tab-width 2)
+      (setq indent-tas-mode nil)
     '';
     extraPackages = epkgs: (with epkgs;
       [ epkgs.haskell-mode
