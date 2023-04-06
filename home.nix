@@ -131,8 +131,9 @@
     initExtra = ''
       GREEN="\[\033[32m\]"
       BLUE="\[\033[34m\]"
-      DEFLT="\[\033[0m\]"
-      PS1="\033]2;\w\007$GREEN\u@\h$DEFAULT[$BLUE\W$DEFLT]\\$ "
+      NONE="\[\033[0m\]"
+      TITLE="\[\033]0;\w\007\]"  
+      PS1="$TITLE$GREEN\u@\h$NONE:$BLUE\W$NONE\\$ "
       cdp() {
         if [ -z "$PROJECT" -a -z "$1" ]; then
            export PROJECT=~/p
