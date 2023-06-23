@@ -21,6 +21,7 @@
   # environment.
   home.packages = with pkgs; [
     cabal-install
+    dig
     ghc
     gnumake
     haskell-language-server
