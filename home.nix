@@ -1,12 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  imports = [];
-  
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "ml";
-  home.homeDirectory = "/home/ml";
+  home.homeDirectory = "/Users/ml";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -20,14 +18,28 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    bash
     cabal-install
     dig
     ghc
     gnumake
     haskell-language-server
-    firefox
     jq
+    openssl
     tree
+    # # Adds the 'hello' command to your environment. It prints a friendly
+    # # "Hello, world!" when run.
+    # pkgs.hello
+
+    # # It is sometimes useful to fine-tune packages, for example, by applying
+    # # overrides. You can do that directly here, just don't forget the
+    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+    # # fonts?
+    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+
+    # # You can also create simple shell scripts directly inside your
+    # # configuration. For example, this adds a command 'my-hello' to your
+    # # environment:
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
@@ -65,76 +77,13 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      env = {
-        "TERM" = "xterm-256color";
-      };
-
-      window = {
-        dimensions = { lines = 31; columns = 81; };
-        opacity = 1.0;
-        padding.x = 0;
-        padding.y = 0;
-        decorations = "full";
-        resize_increments = true;
-      };
-
-      font = {
-        size = 8.0;
-        normal.family = "monospace";
-        bold = { family = "monospace"; style = "Regular"; };
-        italic = { family = "monospace"; style = "Regular"; };
-      };
-
-      cursor.style = "Block";
-
-      shell = {
-        program = "bash";
-        args = [ "--login" ];
-      };
-
-      colors = {
-        # Default colors
-        primary = {
-          background = "0x000000";
-          foreground = "0xd2b48c";
-        };
-    	# Normal colors
-	      normal = {
-      	  black =   "0x100e23";
-          red =     "0xff8080";
-          green =   "0x95ffa4";
-          yellow =  "0xffe9aa";
-          blue =    "0x91ddff";
-          magenta = "0xc991e1";
-          cyan =    "0xaaffe4";
-          white =   "0xcbe3e7";
-        };
-
-        # Bright colors
-        bright = {
-          black =   "0x565575";
-          red =     "0xff5458";
-          green =   "0x62d196";
-          yellow =  "0xffb378";
-          blue =    "0x65b2ff";
-          magenta = "0x906cff";
-          cyan =    "0x63f2f1";
-          white = "0xa6b3cc";
-        };
-      };
-    };
-  };
-
   programs.bash = {
     enable = true;
     initExtra = ''
       GREEN="\[\033[32m\]"
       BLUE="\[\033[34m\]"
       NONE="\[\033[0m\]"
-      TITLE="\[\033]0;\w\007\]"  
+      TITLE="\[\033]0;\w\007\]"
       PS1="$TITLE$GREEN\u@\h$NONE:$BLUE\W$NONE\\$ "
       cdp() {
         if [ -z "$1" -a -z "$PROJECT" ]; then
