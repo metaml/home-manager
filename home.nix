@@ -4,7 +4,7 @@
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "ml";
-  home.homeDirectory = "/Users/ml";
+  home.homeDirectory = "/home/ml";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -19,11 +19,18 @@
   # environment.
   home.packages = with pkgs; [
     bash
+    coreutils
     cabal-install
+    dateutils
     dig
+    fetchutils
+    findutils
+    firefox
     ghc
     gnumake
     haskell-language-server
+    idutils
+    inetutils
     jq
     openssl
     tree
@@ -80,6 +87,7 @@
   programs.bash = {
     enable = true;
     initExtra = ''
+      export LESS='--chop-long-lines --redraw-on-quit'
       GREEN="\[\033[32m\]"
       BLUE="\[\033[34m\]"
       NONE="\[\033[0m\]"
