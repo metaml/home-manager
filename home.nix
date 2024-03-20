@@ -13,12 +13,11 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "23.05"; # Please read the comment before changing.
+  home.stateVersion = "23.11"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    alacritty
     bash
     coreutils
     cabal-install
@@ -28,13 +27,26 @@
     findutils
     firefox
     ghc
+    gmp
+    gnugrep
     gnumake
+    gnused
     haskell-language-server
+    hicolor-icon-theme
     idutils
     inetutils
     jq
+    nix-index
     openssl
+    qogir-icon-theme
+    qogir-theme
+    stack
     tree
+    unzip
+    xorg.xhost
+    xlsfonts
+    zip
+    zlib.dev
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -85,10 +97,42 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      env = {
+        TERM = "xterm-256color";
+      };
+      window = {
+        dimensions = {
+          columns = 91;
+          lines = 31;
+        };
+        padding = {
+          x = 0;
+          y = 0;
+        };
+        dynamic_padding = false;
+      };
+      font = {
+        normal = {
+          style = "Light";
+        };
+        bold = {
+          style = "Light";
+        };
+        italic = {
+          style = "Light";
+        };
+        size = 9;
+      };
+    };
+  };
+  
   programs.bash = {
     enable = true;
     initExtra = ''
-      export LESS='--chop-long-lines --redraw-on-quit'
+      # export LESS='--chop-long-lines --redraw-on-quit'
       GREEN="\[\033[32m\]"
       BLUE="\[\033[34m\]"
       NONE="\[\033[0m\]"
@@ -166,4 +210,10 @@
     # signing.key = "GPG-KEY-ID";
     # signing.signByDefault = true;
   };
+
+  # programs.vscode = {
+  #   enable = true;
+  #   extensions = with pkgs.vscode-extensions; [
+  #   ];
+  # };
 }
