@@ -92,7 +92,6 @@
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     # EDITOR = "emacs";
-    LESS = "--no-init"
   };
 
   # Let Home Manager install and manage itself.
@@ -159,6 +158,7 @@
         fi
         builtin cd $SOURCE
       }
+      unset LESS
     '';
     # sessionVariables = {};
     shellAliases = {
