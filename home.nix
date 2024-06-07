@@ -4,7 +4,7 @@
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "ml";
-  home.homeDirectory = "/home/ml";
+  home.homeDirectory = "/Users/ml";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -23,9 +23,9 @@
     cabal-install
     dateutils
     dig
+    emacs
     fetchutils
     findutils
-    firefox
     ghc
     gmp
     gnugrep
@@ -37,6 +37,7 @@
     inetutils
     jq
     nix-index
+    less
     openssl
     qogir-icon-theme
     qogir-theme
@@ -131,6 +132,13 @@
   
   programs.bash = {
     enable = true;
+    historySize = 1024;
+    historyFileSize = 8192;
+    shellOptions = [
+      "histappend"
+      "checkwinsize"
+    ];
+    enableCompletion = false;
     initExtra = ''
       # export LESS='--chop-long-lines --redraw-on-quit'
       GREEN="\[\033[32m\]"
