@@ -18,30 +18,22 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    bash
+    bashInteractive
     coreutils
-    cabal-install
     dateutils
     dig
-    emacs
     fetchutils
     findutils
-    ghc
     gmp
     gnugrep
     gnumake
     gnused
-    haskell-language-server
-    hicolor-icon-theme
     idutils
     inetutils
     jq
     nix-index
     less
     openssl
-    qogir-icon-theme
-    qogir-theme
-    stack
     tree
     unzip
     xorg.xhost
