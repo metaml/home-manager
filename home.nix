@@ -24,7 +24,6 @@
     dig
     fetchutils
     findutils
-    gmp
     gnugrep
     gnumake
     gnused
@@ -34,6 +33,7 @@
     nix-index
     less
     openssl
+    poetry
     tree
     unzip
     xorg.xhost
@@ -172,7 +172,7 @@
   programs.emacs = {
     enable = true;
     extraConfig = ''
-      (setq initial-scratch-message nil)
+      (setq initial-scratch-message nil) ;
       (if window-system (set-face-attribute 'default nil :family "Monospace" :height 140))
       (load-theme 'zenburn t)
       (set-background-color "black")
@@ -180,7 +180,7 @@
       (set-mouse-color "#ffffff")
       (menu-bar-mode -1)
       (toggle-scroll-bar -1)
-      (tool-bar-mode -1)
+      (toggle-tool-bar-mode-from-frame -1)
       (global-linum-mode 1)
       (global-hl-line-mode 1)
       (set-face-background 'hl-line "#050555")
