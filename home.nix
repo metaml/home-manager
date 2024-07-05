@@ -22,6 +22,7 @@
     coreutils
     dateutils
     dig
+    emacs
     fetchutils
     findutils
     gnugrep
@@ -33,7 +34,6 @@
     nix-index
     less
     openssl
-    poetry
     tree
     unzip
     xorg.xhost
