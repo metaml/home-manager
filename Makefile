@@ -1,6 +1,9 @@
 switch: ## home-manager switch
 	home-manager switch --flake .
 
+init: ## install home-manager
+	nix run home-manager/master -- init --switch
+
 clean: ## clean
 	find . -name \*~ | xargs rm -f
 

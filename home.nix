@@ -22,7 +22,7 @@
     coreutils
     dateutils
     dig
-    emacs
+    # emacs
     fetchutils
     findutils
     gnugrep

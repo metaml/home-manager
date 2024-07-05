@@ -1,45 +1,27 @@
 {
-  description = "home-manager";
+  description = "Home Manager configuration of ml";
 
   inputs = {
-    nixpkgs      = { url = "nixpkgs/nixpkgs-unstable"; };
-    utils        = { url = "github:numtide/flake-utils"; };
+    # Specify the source of Home Manager and Nixpkgs.
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  
-  outputs = { self, nixpkgs, utils, home-manager }:
-    utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        homeConfigurations."ml" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
 
-          # Specify your home configuration modules here, for example,
-          # the path to your home.nix.
-          modules = [ ./home.nix ];
-
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
-        };
-
-        devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            cacert
-            emacs
-            git
-            gnumake
-            home-manager
-          ];
-          shellHook = ''
-            export LANG=en_US.UTF-8
-            export PS1="home-manager|$PS1"
-          '';
-        };
-        devShell = self.devShells.${system}.default;
-      }
-    );
+  outputs = { nixpkgs, home-manager, ... }:
+    let
+      pkgs = nixpkgs.legacyPackages.${system};
+      system = "aarch64-darwin";
+    in {
+      homeConfigurations."ml" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [ ./home.nix ];
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
+      };
+    };
 }
