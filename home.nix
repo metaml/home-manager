@@ -165,6 +165,7 @@
       ".." = "cd ..";
       e = "emacs --no-splash";
       gits = "git status";
+      ls = "ls --color";
       m = "make";
     };
   };
@@ -172,7 +173,7 @@
   programs.emacs = {
     enable = true;
     extraConfig = ''
-      (setq initial-scratch-message nil) ;
+      (setq initial-scratch-message nil)
       (if window-system (set-face-attribute 'default nil :family "Monospace" :height 140))
       (load-theme 'zenburn t)
       (set-background-color "black")
@@ -181,12 +182,14 @@
       (menu-bar-mode -1)
       (toggle-scroll-bar -1)
       (toggle-tool-bar-mode-from-frame -1)
-      (global-linum-mode 1)
+      (display-line-numbers-mode 1)
+      (column-number-mode 1)
       (global-hl-line-mode 1)
       (set-face-background 'hl-line "#050555")
       (setq standard-indent 2)
       (setq tab-width 2)
-      (setq indent-tas-mode nil)
+      (setq python-indent-offset 2)
+      (setq indent-tab-mode nil)
     '';
     extraPackages = epkgs: (with epkgs;
       [ epkgs.haskell-mode
