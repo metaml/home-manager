@@ -20,6 +20,7 @@
   home.packages = with pkgs; [
     bashInteractive
     coreutils
+    csvtool
     dateutils
     dig
     # emacs
