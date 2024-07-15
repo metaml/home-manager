@@ -187,10 +187,11 @@
       (column-number-mode 1)
       (global-hl-line-mode 1)
       (set-face-background 'hl-line "#050555")
+      (setq indent-tab-mode nil)
       (setq standard-indent 2)
       (setq tab-width 2)
+      (setq python-guess-indent nil)
       (setq python-indent-offset 2)
-      (setq indent-tab-mode nil)
     '';
     extraPackages = epkgs: (with epkgs;
       [ epkgs.haskell-mode
