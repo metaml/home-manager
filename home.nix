@@ -183,7 +183,7 @@
       (menu-bar-mode -1)
       (toggle-scroll-bar -1)
       (toggle-tool-bar-mode-from-frame -1)
-      (display-line-numbers-mode 1)
+      (global-display-line-numbers-mode t)
       (column-number-mode 1)
       (global-hl-line-mode 1)
       (set-face-background 'hl-line "#050555")
@@ -195,6 +195,7 @@
     '';
     extraPackages = epkgs: (with epkgs;
       [ epkgs.haskell-mode
+        epkgs.python-mode
         epkgs.nix-mode
         epkgs.zenburn-theme
       ]
