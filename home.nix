@@ -196,6 +196,7 @@
     extraPackages = epkgs: (with epkgs;
       [ epkgs.haskell-mode
         epkgs.python-mode
+        epkgs.terraform-mode        
         epkgs.nix-mode
         epkgs.zenburn-theme
       ]
