@@ -175,7 +175,8 @@
     enable = true;
     extraConfig = ''
       (setq initial-scratch-message nil)
-      (if window-system (set-face-attribute 'default nil :family "Monospace" :height 140))
+      (if window-system (set-face-attribute 'default nil :family "Monospace" :height 150))
+      (set-face-bold-p 'bold nil)
       (load-theme 'zenburn t)
       (set-background-color "black")
       (set-cursor-color "#ff4520")
@@ -192,12 +193,19 @@
       (setq tab-width 2)
       (setq python-guess-indent nil)
       (setq python-indent-offset 2)
+      (require 'purescript-mode-autoloads)
+      (add-hook 'purescript-mode-hook 'turn-on-purescript-indentation)
+      (add-hook 'write-file-hooks 'delete-trailing-whitespace)    
     '';
     extraPackages = epkgs: (with epkgs;
-      [ epkgs.haskell-mode
+      [ epkgs.dhall-mode
+        epkgs.haskell-mode
+        epkgs.json-mode
         epkgs.python-mode
         epkgs.terraform-mode        
         epkgs.nix-mode
+        epkgs.purescript-mode
+        epkgs.yaml-mode        
         epkgs.zenburn-theme
       ]
     );
