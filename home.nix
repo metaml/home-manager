@@ -32,9 +32,11 @@
     idutils
     inetutils
     jq
+    meld
     nix-index
     less
     openssl
+    p7zip
     tree
     unzip
     xorg.xhost
@@ -122,7 +124,7 @@
       };
     };
   };
-  
+
   programs.bash = {
     enable = true;
     historySize = 1024;
@@ -138,7 +140,7 @@
       BLUE="\[\033[34m\]"
       NONE="\[\033[0m\]"
       TITLE="\[\033]0;\w\007\]"
-      PS1="$TITLE$GREEN\u@\h$NONE:$BLUE\W$NONE\\$ "
+      PS1="$TITLE$GREEN\u@\h$NONE|$BLUE\W$NONE\\$ "
       cdp() {
         if [ -z "$1" -a -z "$PROJECT" ]; then
            export PROJECT=~/p
@@ -166,6 +168,7 @@
       ".." = "cd ..";
       e = "emacs --no-splash";
       gits = "git status";
+      gitd = "git difftool";
       ls = "ls --color";
       m = "make";
     };
@@ -195,34 +198,45 @@
       (setq python-indent-offset 2)
       (require 'purescript-mode-autoloads)
       (add-hook 'purescript-mode-hook 'turn-on-purescript-indentation)
-      (add-hook 'write-file-hooks 'delete-trailing-whitespace)    
+      (add-hook 'write-file-hooks 'delete-trailing-whitespace)
     '';
     extraPackages = epkgs: (with epkgs;
       [ epkgs.dhall-mode
         epkgs.haskell-mode
         epkgs.json-mode
         epkgs.python-mode
-        epkgs.terraform-mode        
+        epkgs.terraform-mode
         epkgs.nix-mode
         epkgs.purescript-mode
-        epkgs.yaml-mode        
+        epkgs.ws-butler
+        epkgs.yaml-mode
         epkgs.zenburn-theme
       ]
     );
   };
 
-  # https://github.com/jwiegley/nix-config/blob/master/config/home.nix
+  # https://github.com/jwiegley/nix-config/blob/master/config/home.nixc
   programs.git = {
-    enable = true;
+    enable    = true;
     userEmail = "metaml@gmail.com";
-    userName = "metaml";
+    userName  = "metaml";
     extraConfig = {
       core = {
         editor = "emacsclient";
         whitespace = "trailing-space,space-before-tab";
       };
       init.defaultBranch = "main";
+      color    = { ui = "auto"; };
+      diff     = { tool = "meld";
+                   mnemonicprefix = true;
+                 };
+      difftool = { prompt = false; };
+      merge    = { tool = "splice"; };
+      push     = { default = "simple"; };
+      pull     = { rebase = true; };
+      branch   = { autosetupmerge = true; };
     };
+    includes = [ { path = "~/.gitconfig.local"; } ];
     # signing.key = "GPG-KEY-ID";
     # signing.signByDefault = true;
   };
