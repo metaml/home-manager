@@ -178,10 +178,10 @@
     enable = true;
     extraConfig = ''
       (setq initial-scratch-message nil)
-      (if window-system (set-face-attribute 'default nil :family "Monospace" :height 150))
-      (set-face-bold-p 'bold nil)
       (load-theme 'zenburn t)
+      (if window-system (set-face-attribute 'default nil :family "Monospace" :height 150))
       (set-background-color "black")
+      (set-face-bold-p 'bold nil)
       (set-cursor-color "#ff4520")
       (set-mouse-color "#ffffff")
       (menu-bar-mode -1)
