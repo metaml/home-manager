@@ -39,8 +39,9 @@
     p7zip
     tree
     unzip
-    xorg.xhost
     xlsfonts
+    xpdf
+    xorg.xhost
     zip
     zlib.dev
     # # Adds the 'hello' command to your environment. It prints a friendly
