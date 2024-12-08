@@ -36,11 +36,11 @@
     nix-index
     less
     openssl
+    pandoc
     p7zip
     tree
     unzip
     xlsfonts
-    xpdf
     xorg.xhost
     zip
     zlib.dev

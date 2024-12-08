@@ -1,10 +1,8 @@
-export NIXPKGS_ALLOW_INSECURE=1
-
 switch: ## home-manager switch
-	home-manager --impure switch --flake .
+	home-manager switch --flake .
 
 switch-debug: ## home-manager switch show trace
-	home-manager --impure --show-trace switch --flake .
+	home-manager --show-trace switch --flake .
 
 init: ## install home-manager
 	nix run home-manager/master -- init --switch
