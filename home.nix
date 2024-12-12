@@ -136,7 +136,6 @@
     ];
     enableCompletion = false;
     initExtra = ''
-      export LESS='--chop-long-lines --redraw-on-quit'
       GREEN="\[\033[32m\]"
       BLUE="\[\033[34m\]"
       NONE="\[\033[0m\]"
