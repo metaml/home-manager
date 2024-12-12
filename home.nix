@@ -136,7 +136,7 @@
     ];
     enableCompletion = false;
     initExtra = ''
-      # export LESS='--chop-long-lines --redraw-on-quit'
+      export LESS='--chop-long-lines --redraw-on-quit'
       GREEN="\[\033[32m\]"
       BLUE="\[\033[34m\]"
       NONE="\[\033[0m\]"
@@ -166,12 +166,16 @@
     '';
     # sessionVariables = {};
     shellAliases = {
-      ".." = "cd ..";
       e = "emacs --no-splash";
+      g = "git";
       gits = "git status";
       gitd = "git difftool";
       ls = "ls --color";
+      l = "ls --color";
+      ll = "ls -l --color";
+      lr = "ls -ltr --color";
       m = "make";
+      n = "nix";
     };
   };
 
