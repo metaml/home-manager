@@ -19,6 +19,7 @@
   # environment.
   home.packages = with pkgs; [
     bashInteractive
+    bc
     coreutils
     csvtool
     dateutils
