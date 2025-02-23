@@ -1,5 +1,5 @@
 switch: ## home-manager switch
-	home-manager switch --flake .
+	home-manager switch --flake .#ml-x86_64-linux
 
 switch-debug: ## home-manager switch show trace
 	home-manager --show-trace switch --flake .
