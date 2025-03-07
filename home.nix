@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, system, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "ml";
-  home.homeDirectory = "/Users/ml";
+  home.homeDirectory = "/home/ml";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -92,7 +92,8 @@
     # EDITOR = "emacs";
   };
 
-  # Let Home Manager install and manage itself.
+  programs.firefox.enable = true;
+  # let home manager install and manage itself.
   programs.home-manager.enable = true;
 
   programs.alacritty = {
@@ -185,6 +186,7 @@
       (setq initial-scratch-message nil)
       (load-theme 'zenburn t)
       (if window-system (set-face-attribute 'default nil :family "Monospace" :height 150))
+      (if (not (display-graphic-p)) (set-face-background 'default "color-16"))
       (set-background-color "black")
       (set-face-bold-p 'bold nil)
       (set-cursor-color "#ff4520")
@@ -227,7 +229,7 @@
     userName  = "metaml";
     extraConfig = {
       core = {
-        editor = "emacsclient";
+        editor = "emacs";
         whitespace = "trailing-space,space-before-tab";
       };
       init.defaultBranch = "main";
