@@ -30,6 +30,7 @@
     gnugrep
     gnumake
     gnused
+    google-cloud-sdk
     idutils
     inetutils
     jq
